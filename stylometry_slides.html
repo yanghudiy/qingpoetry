@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>清代诗人与唐宋诗风计量文体学比对</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap');
+  /* Self-contained: no external @import, use system font stack */
+  /* "Noto Serif SC" / "Noto Sans SC" if installed locally, else fallback */
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'SimHei', sans-serif;
     background: #f0f2f8;
     color: #2d2d44;
     overflow: hidden;
@@ -63,7 +64,7 @@
     padding: 8px 20px;
     border-radius: 20px;
     cursor: pointer;
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     font-size: 14px;
     transition: all 0.3s;
   }
@@ -80,7 +81,7 @@
     background: linear-gradient(135deg, #e8eaf6 0%, #d1d5ee 50%, #e8eaf6 100%);
   }
   .slide-title h1 {
-    font-family: 'Noto Serif SC', serif;
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
     font-size: 48px;
     font-weight: 700;
     background: linear-gradient(90deg, #7c3aed, #2563eb, #059669);
@@ -121,7 +122,7 @@
     padding: 6px 16px;
     border-radius: 16px;
     font-size: 14px;
-    font-family: 'Noto Serif SC', serif;
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
     transition: transform 0.3s, box-shadow 0.3s;
   }
   .poet-chip:hover { transform: translateY(-4px) scale(1.05); }
@@ -133,7 +134,7 @@
     background: linear-gradient(180deg, #e8eaf6 0%, #dde0f0 100%);
   }
   .slide-heatmap h2 {
-    font-family: 'Noto Serif SC', serif;
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
     font-size: 32px;
     margin-bottom: 8px;
     color: #2d2d44;
@@ -156,21 +157,21 @@
     border: 1px solid rgba(45,45,68,0.08);
   }
   .heatmap-table th {
-    font-family: 'Noto Serif SC', serif;
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
     font-weight: 700;
     color: rgba(45,45,68,0.6);
     font-size: 13px;
   }
   .heatmap-table th:first-child { text-align: right; }
   .heatmap-table td.row-label {
-    font-family: 'Noto Serif SC', serif;
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
     font-weight: 700;
     text-align: right;
     color: #7c3aed;
     font-size: 13px;
   }
   .heatmap-table td.cell {
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     font-size: 13px;
     transition: transform 0.2s, box-shadow 0.2s;
   }
@@ -200,7 +201,7 @@
     background: linear-gradient(135deg, #e8eaf6 0%, #f0f4ff 50%, #e8eaf6 100%);
   }
   .slide-network h2 {
-    font-family: 'Noto Serif SC', serif;
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
     font-size: 32px;
     margin-bottom: 8px;
     color: #2d2d44;
@@ -216,7 +217,7 @@
   .node-circle { cursor: pointer; transition: all 0.3s; }
   .node-circle:hover { filter: brightness(1.15) drop-shadow(0 0 8px rgba(99,102,241,0.4)); }
   .section-label {
-    font-family: 'Noto Serif SC', serif;
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
     font-size: 16px;
     font-weight: 700;
     text-anchor: middle;
@@ -224,7 +225,7 @@
     pointer-events: none;
   }
   .node-label {
-    font-family: 'Noto Serif SC', serif;
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
     font-size: 14px;
     font-weight: 700;
     text-anchor: middle;
@@ -232,7 +233,7 @@
   }
   .edge-line { transition: opacity 0.3s; }
   .edge-label {
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     font-size: 10px;
     text-anchor: middle;
     fill: rgba(45,45,68,0.5);
