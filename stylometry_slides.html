@@ -11,8 +11,8 @@
 
   body {
     font-family: 'Noto Sans SC', sans-serif;
-    background: #0f0f1e;
-    color: #e8e8f0;
+    background: #f0f2f8;
+    color: #2d2d44;
     overflow: hidden;
   }
 
@@ -33,6 +33,18 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes drawEdge {
+    from { stroke-dashoffset: 1000; }
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.3); }
+    to { opacity: 1; transform: scale(1); }
+  }
 
   /* ---- Navigation ---- */
   .nav {
@@ -45,9 +57,9 @@
     z-index: 100;
   }
   .nav button {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #e8e8f0;
+    background: rgba(45,45,68,0.08);
+    border: 1px solid rgba(45,45,68,0.15);
+    color: #2d2d44;
     padding: 8px 20px;
     border-radius: 20px;
     cursor: pointer;
@@ -55,9 +67,9 @@
     font-size: 14px;
     transition: all 0.3s;
   }
-  .nav button:hover { background: rgba(255,255,255,0.25); }
+  .nav button:hover { background: rgba(99,102,241,0.2); border-color: rgba(99,102,241,0.4); }
   .nav .page-indicator {
-    color: rgba(255,255,255,0.4);
+    color: rgba(45,45,68,0.4);
     font-size: 14px;
     line-height: 36px;
     padding: 0 8px;
@@ -65,30 +77,37 @@
 
   /* ---- Slide 1: Title ---- */
   .slide-title {
-    background: linear-gradient(135deg, #0f0f1e 0%, #1a1a3e 50%, #0f0f1e 100%);
+    background: linear-gradient(135deg, #e8eaf6 0%, #d1d5ee 50%, #e8eaf6 100%);
   }
   .slide-title h1 {
     font-family: 'Noto Serif SC', serif;
     font-size: 48px;
     font-weight: 700;
-    background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399);
+    background: linear-gradient(90deg, #7c3aed, #2563eb, #059669);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 16px;
     letter-spacing: 4px;
+    animation: slideDown 0.8s ease;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   .slide-title .subtitle {
     font-size: 20px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(45,45,68,0.5);
     margin-bottom: 40px;
     letter-spacing: 2px;
+    animation: fadeIn 0.8s ease 0.2s both;
   }
   .slide-title .method {
     font-size: 16px;
-    color: rgba(255,255,255,0.35);
+    color: rgba(45,45,68,0.4);
     max-width: 600px;
     text-align: center;
     line-height: 1.8;
+    animation: fadeIn 0.8s ease 0.4s both;
   }
   .slide-title .poets-preview {
     display: flex;
@@ -96,44 +115,50 @@
     margin-top: 50px;
     flex-wrap: wrap;
     justify-content: center;
+    animation: fadeIn 0.8s ease 0.6s both;
   }
   .poet-chip {
     padding: 6px 16px;
     border-radius: 16px;
     font-size: 14px;
     font-family: 'Noto Serif SC', serif;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
-  .chip-qing { background: rgba(167,139,250,0.15); border: 1px solid rgba(167,139,250,0.3); color: #c4b5fd; }
-  .chip-tang { background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.3); color: #93c5fd; }
+  .poet-chip:hover { transform: translateY(-4px) scale(1.05); }
+  .chip-qing { background: rgba(124,58,237,0.1); border: 1px solid rgba(124,58,237,0.25); color: #7c3aed; }
+  .chip-tang { background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.25); color: #2563eb; }
 
   /* ---- Slide 2: Heatmap ---- */
   .slide-heatmap {
-    background: linear-gradient(180deg, #0f0f1e 0%, #14142b 100%);
+    background: linear-gradient(180deg, #e8eaf6 0%, #dde0f0 100%);
   }
   .slide-heatmap h2 {
     font-family: 'Noto Serif SC', serif;
     font-size: 32px;
     margin-bottom: 8px;
-    color: #e8e8f0;
+    color: #2d2d44;
+    animation: slideDown 0.6s ease;
   }
   .slide-heatmap .desc {
     font-size: 14px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(45,45,68,0.45);
     margin-bottom: 24px;
+    animation: fadeIn 0.6s ease 0.2s both;
   }
   .heatmap-table {
     border-collapse: collapse;
     font-size: 14px;
+    animation: fadeIn 0.6s ease 0.4s both;
   }
   .heatmap-table th, .heatmap-table td {
     padding: 10px 16px;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(45,45,68,0.08);
   }
   .heatmap-table th {
     font-family: 'Noto Serif SC', serif;
     font-weight: 700;
-    color: rgba(255,255,255,0.6);
+    color: rgba(45,45,68,0.6);
     font-size: 13px;
   }
   .heatmap-table th:first-child { text-align: right; }
@@ -141,51 +166,63 @@
     font-family: 'Noto Serif SC', serif;
     font-weight: 700;
     text-align: right;
-    color: #c4b5fd;
+    color: #7c3aed;
     font-size: 13px;
   }
   .heatmap-table td.cell {
     font-family: 'Noto Sans SC', sans-serif;
     font-size: 13px;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .heatmap-table td.cell:hover { transform: scale(1.15); z-index: 10; position: relative; }
+  .heatmap-table td.cell:hover { transform: scale(1.15); z-index: 10; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
   .heatmap-table td.best {
     font-weight: 700;
-    border: 2px solid #fbbf24 !important;
-    box-shadow: 0 0 12px rgba(251,191,36,0.3);
+    border: 2px solid #f59e0b !important;
+    box-shadow: 0 0 12px rgba(245,158,11,0.3);
   }
   .legend {
     margin-top: 20px;
     display: flex;
     gap: 20px;
     font-size: 12px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(45,45,68,0.4);
+    align-items: center;
   }
   .legend-bar {
     width: 200px;
     height: 12px;
     border-radius: 6px;
-    background: linear-gradient(90deg, #1e1b4b, #4338ca, #6366f1, #818cf8, #e0e7ff);
+    background: linear-gradient(90deg, #e0e7ff, #a5b4fc, #818cf8, #6366f1, #4338ca);
   }
 
   /* ---- Slide 3: Network ---- */
   .slide-network {
-    background: linear-gradient(135deg, #0f0f1e 0%, #111827 100%);
+    background: linear-gradient(135deg, #e8eaf6 0%, #f0f4ff 50%, #e8eaf6 100%);
   }
   .slide-network h2 {
     font-family: 'Noto Serif SC', serif;
     font-size: 32px;
     margin-bottom: 8px;
+    color: #2d2d44;
+    animation: slideDown 0.6s ease;
   }
   .slide-network .desc {
     font-size: 14px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(45,45,68,0.45);
     margin-bottom: 20px;
+    animation: fadeIn 0.6s ease 0.2s both;
   }
-  svg.network { width: 900px; height: 560px; }
+  svg.network { width: 900px; height: 560px; animation: fadeIn 0.8s ease 0.4s both; }
   .node-circle { cursor: pointer; transition: all 0.3s; }
-  .node-circle:hover { filter: brightness(1.3); }
+  .node-circle:hover { filter: brightness(1.15) drop-shadow(0 0 8px rgba(99,102,241,0.4)); }
+  .section-label {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-anchor: middle;
+    fill: rgba(45,45,68,0.35);
+    pointer-events: none;
+  }
   .node-label {
     font-family: 'Noto Serif SC', serif;
     font-size: 14px;
@@ -198,7 +235,7 @@
     font-family: 'Noto Sans SC', sans-serif;
     font-size: 10px;
     text-anchor: middle;
-    fill: rgba(255,255,255,0.5);
+    fill: rgba(45,45,68,0.5);
     pointer-events: none;
   }
   .network-legend {
@@ -206,6 +243,7 @@
     gap: 30px;
     margin-top: 16px;
     font-size: 13px;
+    color: rgba(45,45,68,0.5);
   }
   .network-legend .item { display: flex; align-items: center; gap: 8px; }
   .network-legend .dot { width: 14px; height: 14px; border-radius: 50%; }
@@ -273,9 +311,9 @@
   <div class="desc">连线粗细 = 余弦相似度 · 仅显示每位清代诗人最强的关联</div>
   <svg class="network" id="networkSvg" viewBox="0 0 900 560"></svg>
   <div class="network-legend">
-    <div class="item"><div class="dot" style="background:#a78bfa;"></div>清代诗人</div>
-    <div class="item"><div class="dot" style="background:#60a5fa;"></div>唐宋诗人</div>
-    <div class="item"><div class="dot" style="background:#fbbf24;"></div>最强关联</div>
+    <div class="item"><div class="dot" style="background:#7c3aed;"></div>清代诗人</div>
+    <div class="item"><div class="dot" style="background:#2563eb;"></div>唐宋诗人</div>
+    <div class="item"><div class="dot" style="background:#f59e0b;"></div>最强关联</div>
   </div>
 </div>
 
@@ -304,11 +342,11 @@ const TANG_ORDER = ["李白","杜甫","白居易","韩愈","苏轼","陆游"];
 
 // ===================== Color helper =====================
 function simColor(sim) {
-  // Map 0.55–0.80 to color gradient
+  // Map 0.55–0.80 to light-friendly color gradient (light lavender to deep indigo)
   const t = Math.max(0, Math.min(1, (sim - 0.55) / 0.25));
-  const r = Math.round(30 + t * 200);
-  const g = Math.round(30 + t * 200);
-  const b = Math.round(75 + t * 180);
+  const r = Math.round(224 - t * 140);
+  const g = Math.round(231 - t * 130);
+  const b = Math.round(255 - t * 80);
   return `rgb(${r},${g},${b})`;
 }
 
@@ -332,7 +370,7 @@ function simColor(sim) {
       const sim = pair ? pair[1] : 0;
       td.textContent = sim.toFixed(4);
       td.style.background = simColor(sim);
-      td.style.color = sim > 0.70 ? "#fff" : "rgba(255,255,255,0.7)";
+      td.style.color = sim > 0.70 ? "#fff" : "rgba(45,45,68,0.7)";
       if (tang === best) td.classList.add("best");
       tr.appendChild(td);
     });
@@ -345,22 +383,25 @@ function simColor(sim) {
   const svg = document.getElementById("networkSvg");
   const cx = 450, cy = 280;
 
-  // Tang/Song poets on right arc, Qing poets on left arc
+  // Tang/Song poets on BOTTOM arc, Qing poets on TOP arc — wide vertical separation
   const tangPos = {};
   const qingPos = {};
-  const R_tang = 200, R_qing = 200;
+  const R_tang = 180, R_qing = 180;
 
+  // Tang/Song: bottom row, spread horizontally
   TANG_ORDER.forEach((name, i) => {
-    const angle = -Math.PI/2 + (i - (TANG_ORDER.length-1)/2) * (Math.PI * 0.7 / (TANG_ORDER.length-1));
-    tangPos[name] = { x: cx + R_tang * Math.cos(angle) * 1.6, y: cy + R_tang * Math.sin(angle) };
+    const angle = Math.PI/2 + (i - (TANG_ORDER.length-1)/2) * (Math.PI * 0.65 / (TANG_ORDER.length-1));
+    tangPos[name] = { x: cx + R_tang * Math.sin(angle) * 2.0, y: cy + R_tang * Math.cos(angle) * 0.8 + 120 };
   });
 
+  // Qing: top row, spread horizontally
   QING_ORDER.forEach((name, i) => {
-    const angle = -Math.PI/2 + (i - (QING_ORDER.length-1)/2) * (Math.PI * 0.8 / (QING_ORDER.length-1));
-    qingPos[name] = { x: cx - R_qing * Math.cos(angle) * 1.6, y: cy + R_qing * Math.sin(angle) };
+    const angle = Math.PI/2 + (i - (QING_ORDER.length-1)/2) * (Math.PI * 0.75 / (QING_ORDER.length-1));
+    qingPos[name] = { x: cx - R_qing * Math.sin(angle) * 2.0, y: cy - R_qing * Math.cos(angle) * 0.8 - 120 };
   });
 
-  // Draw edges (top 2 for each Qing poet)
+  // Draw edges (top 2 for each Qing poet) with animated draw-in
+  let edgeDelay = 0;
   QING_ORDER.forEach(qing => {
     DATA[qing].slice(0, 2).forEach((pair, idx) => {
       const [tang, sim] = pair;
@@ -370,11 +411,18 @@ function simColor(sim) {
       line.setAttribute("y1", p1.y);
       line.setAttribute("x2", p2.x);
       line.setAttribute("y2", p2.y);
-      line.setAttribute("stroke", idx === 0 ? "#fbbf24" : "rgba(167,139,250,0.3)");
+      line.setAttribute("stroke", idx === 0 ? "#f59e0b" : "rgba(124,58,237,0.25)");
       line.setAttribute("stroke-width", idx === 0 ? (sim * 8) : (sim * 3));
-      line.setAttribute("opacity", idx === 0 ? 0.6 : 0.25);
+      line.setAttribute("opacity", idx === 0 ? 0.55 : 0.2);
       line.setAttribute("class", "edge-line");
+      // Animate draw-in
+      const length = Math.sqrt((p2.x-p1.x)**2 + (p2.y-p1.y)**2);
+      line.style.setProperty('--len', length);
+      line.setAttribute("stroke-dasharray", length);
+      line.setAttribute("stroke-dashoffset", length);
+      line.style.animation = `drawEdge 0.8s ease ${edgeDelay}s forwards`;
       svg.appendChild(line);
+      edgeDelay += 0.08;
 
       // Edge label (only for best)
       if (idx === 0) {
@@ -384,19 +432,39 @@ function simColor(sim) {
         text.setAttribute("y", my - 4);
         text.setAttribute("class", "edge-label");
         text.textContent = sim.toFixed(3);
+        text.style.opacity = 0;
+        text.style.animation = `fadeIn 0.4s ease ${edgeDelay}s forwards`;
         svg.appendChild(text);
       }
     });
   });
 
-  // Draw Tang/Song nodes
+  // Draw section labels
+  const topLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  topLabel.setAttribute("x", cx);
+  topLabel.setAttribute("y", 30);
+  topLabel.setAttribute("class", "section-label");
+  topLabel.textContent = "清代诗人";
+  svg.appendChild(topLabel);
+
+  const botLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  botLabel.setAttribute("x", cx);
+  botLabel.setAttribute("y", 540);
+  botLabel.setAttribute("class", "section-label");
+  botLabel.textContent = "唐宋诗人";
+  svg.appendChild(botLabel);
+
+  // Draw Tang/Song nodes (bottom, blue)
+  let nodeDelay = 0.3;
   Object.entries(tangPos).forEach(([name, pos]) => {
     const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    g.style.opacity = 0;
+    g.style.animation = `popIn 0.5s ease ${nodeDelay}s forwards`;
     const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circle.setAttribute("cx", pos.x);
     circle.setAttribute("cy", pos.y);
     circle.setAttribute("r", 28);
-    circle.setAttribute("fill", "#60a5fa");
+    circle.setAttribute("fill", "#2563eb");
     circle.setAttribute("opacity", 0.85);
     circle.setAttribute("class", "node-circle");
     g.appendChild(circle);
@@ -408,16 +476,19 @@ function simColor(sim) {
     label.textContent = name;
     g.appendChild(label);
     svg.appendChild(g);
+    nodeDelay += 0.06;
   });
 
-  // Draw Qing nodes
+  // Draw Qing nodes (top, purple)
   Object.entries(qingPos).forEach(([name, pos]) => {
     const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    g.style.opacity = 0;
+    g.style.animation = `popIn 0.5s ease ${nodeDelay}s forwards`;
     const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circle.setAttribute("cx", pos.x);
     circle.setAttribute("cy", pos.y);
     circle.setAttribute("r", 26);
-    circle.setAttribute("fill", "#a78bfa");
+    circle.setAttribute("fill", "#7c3aed");
     circle.setAttribute("opacity", 0.85);
     circle.setAttribute("class", "node-circle");
     g.appendChild(circle);
@@ -429,6 +500,7 @@ function simColor(sim) {
     label.textContent = name;
     g.appendChild(label);
     svg.appendChild(g);
+    nodeDelay += 0.06;
   });
 })();
 
