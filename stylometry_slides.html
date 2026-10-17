@@ -21,7 +21,6 @@
     --jade: #0a6b5c;
     --paper: #f5f0e6;
     --paper-deep: #ede4d3;
-    --seal: #b8332a;
   }
 
   body {
@@ -31,7 +30,6 @@
     overflow: hidden;
   }
 
-  /* Subtle rice-paper texture via repeating gradients */
   .slide {
     width: 100vw;
     height: 100vh;
@@ -44,21 +42,6 @@
     animation: fadeIn 0.6s ease;
   }
   .slide.active { display: flex; }
-
-  /* Traditional key-fret (回纹) corner decoration */
-  .slide::before, .slide::after {
-    content: '';
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    pointer-events: none;
-    opacity: 0.35;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60' fill='none' stroke='%23c0392b' stroke-width='1.5'%3E%3Cpath d='M5 5h20v20H10v10h25V5h20v50H5z'/%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
-  .slide::before { top: 12px; left: 12px; }
-  .slide::after { bottom: 12px; right: 12px; transform: rotate(180deg); }
 
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -108,48 +91,17 @@
 
   /* ---- Slide 1: Title ---- */
   .slide-title {
-    background:
-      radial-gradient(ellipse at top, rgba(212,168,67,0.10) 0%, transparent 60%),
-      linear-gradient(135deg, #f5f0e6 0%, #ede4d3 50%, #f5f0e6 100%);
+    background: var(--paper);
   }
   .slide-title h1 {
     font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
     font-size: 48px;
     font-weight: 700;
-    background: linear-gradient(90deg, #c0392b, #8e44ad, #0a6b5c);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+    color: #3a0066;
     margin-bottom: 16px;
     letter-spacing: 4px;
     animation: slideDown 0.8s ease;
   }
-  /* Vermillion seal stamp next to title */
-  .slide-title .seal {
-    position: absolute;
-    top: 50px;
-    right: 60px;
-    width: 70px;
-    height: 70px;
-    background: var(--seal);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    line-height: 1.2;
-    border-radius: 4px;
-    opacity: 0.85;
-    transform: rotate(-4deg);
-    box-shadow: 0 2px 8px rgba(184,51,42,0.3);
-    animation: popIn 0.6s ease 0.5s both;
-  }
-  .slide-title .seal span { font-size: 11px; letter-spacing: 0; margin-top: 2px; opacity: 0.9; }
   .slide-title .subtitle {
     font-size: 20px;
     color: var(--vermillion);
@@ -189,9 +141,7 @@
 
   /* ---- Slide 2: Heatmap ---- */
   .slide-heatmap {
-    background:
-      radial-gradient(ellipse at center, rgba(212,168,67,0.08) 0%, transparent 70%),
-      linear-gradient(180deg, #f5f0e6 0%, #ede4d3 100%);
+    background: var(--paper);
   }
   .slide-heatmap h2 {
     font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
@@ -264,12 +214,18 @@
     border-radius: 6px;
     background: linear-gradient(90deg, #f5f0e6, #e0c9a0, #c89a4e, #a06820, #6b4400);
   }
+  .legend-note {
+    margin-top: 14px;
+    font-size: 13px;
+    color: rgba(45,45,68,0.5);
+    text-align: center;
+    line-height: 1.7;
+    max-width: 560px;
+  }
 
   /* ---- Slide 3: Network ---- */
   .slide-network {
-    background:
-      radial-gradient(ellipse at center, rgba(192,57,43,0.06) 0%, transparent 70%),
-      linear-gradient(135deg, #f5f0e6 0%, #ede4d3 50%, #f5f0e6 100%);
+    background: var(--paper);
   }
   .slide-network h2 {
     font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
@@ -284,17 +240,9 @@
     margin-bottom: 20px;
     animation: fadeIn 0.6s ease 0.2s both;
   }
-  svg.network { width: 900px; height: 560px; animation: fadeIn 0.8s ease 0.4s both; }
+  svg.network { width: 900px; height: 580px; animation: fadeIn 0.8s ease 0.4s both; }
   .node-circle { cursor: pointer; transition: all 0.3s; }
   .node-circle:hover { filter: brightness(1.15) drop-shadow(0 0 8px rgba(192,57,43,0.5)); }
-  .section-label {
-    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
-    font-size: 16px;
-    font-weight: 700;
-    text-anchor: middle;
-    fill: rgba(45,45,68,0.4);
-    pointer-events: none;
-  }
   .node-label {
     font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
     font-size: 14px;
@@ -311,21 +259,82 @@
     pointer-events: none;
   }
   .network-legend {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
-    gap: 30px;
-    margin-top: 16px;
-    font-size: 13px;
-    color: rgba(45,45,68,0.6);
+    flex-direction: column;
+    gap: 12px;
+    font-size: 14px;
+    color: rgba(45,45,68,0.7);
+    background: rgba(255,253,247,0.85);
+    border: 1px solid var(--gold-soft);
+    border-radius: 8px;
+    padding: 16px 18px;
+    z-index: 10;
   }
-  .network-legend .item { display: flex; align-items: center; gap: 8px; }
-  .network-legend .dot { width: 14px; height: 14px; border-radius: 50%; }
+  .network-legend .item { display: flex; align-items: center; gap: 10px; }
+  .network-legend .dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+
+  /* Tooltip for poet detail on network hover */
+  .poet-tooltip {
+    position: absolute;
+    display: none;
+    background: #fffdf7;
+    border: 1px solid var(--gold-soft);
+    border-left: 3px solid var(--vermillion);
+    border-radius: 6px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 20px rgba(45,45,68,0.15);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    pointer-events: none;
+    z-index: 50;
+    min-width: 180px;
+    animation: fadeIn 0.2s ease;
+  }
+  .poet-tooltip h4 {
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--vermillion);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .poet-tooltip .match-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2px;
+  }
+  .poet-tooltip .match-name {
+    font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+    font-weight: 700;
+    color: var(--jade);
+  }
+  .poet-tooltip .match-sim {
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .poet-tooltip .match-word {
+    font-size: 12px;
+    color: rgba(45,45,68,0.5);
+  }
+  .poet-tooltip .tip-note {
+    font-size: 11px;
+    color: rgba(45,45,68,0.4);
+    margin-top: 6px;
+    border-top: 1px solid rgba(212,168,67,0.2);
+    padding-top: 4px;
+  }
 </style>
 </head>
 <body>
 
 <!-- ==================== SLIDE 1: Title ==================== -->
 <div class="slide slide-title active" id="slide1">
-  <div class="seal">诗<span>STYLOMETRY</span></div>
   <h1>清代诗人与唐宋诗风</h1>
   <h1>计量文体学比对</h1>
   <div class="subtitle">Stylometric Analysis · 1-2 Gram · Cosine Similarity</div>
@@ -376,13 +385,18 @@
     <div class="legend-bar"></div>
     <span>0.80</span>
   </div>
+  <div class="legend-note">
+    数值越接近 1，表示两位诗人在用词习惯上越相似；<br>
+    0.55–0.80 的范围说明所有诗人之间都存在一定程度的共通性，但仍可区分亲疏远近。
+  </div>
 </div>
 
 <!-- ==================== SLIDE 3: Network ==================== -->
 <div class="slide slide-network" id="slide3">
   <h2>诗风关联网络图</h2>
   <div class="desc">连线粗细 = 余弦相似度 · 仅显示每位清代诗人最强的关联</div>
-  <svg class="network" id="networkSvg" viewBox="0 0 900 560"></svg>
+  <svg class="network" id="networkSvg" viewBox="0 0 900 580"></svg>
+  <div class="poet-tooltip" id="poetTooltip"></div>
   <div class="network-legend">
     <div class="item"><div class="dot" style="background:#c0392b;"></div>清代诗人</div>
     <div class="item"><div class="dot" style="background:#0a6b5c;"></div>唐宋诗人</div>
@@ -412,6 +426,19 @@ const DATA = {
 
 const QING_ORDER = ["钱谦益","吴伟业","王士祯","朱彝尊","尤侗","查慎行","顾贞观","叶燮"];
 const TANG_ORDER = ["李白","杜甫","白居易","韩愈","苏轼","陆游"];
+
+// ===================== Poet detail (for tooltips) =====================
+// Top-2 matches + a representative shared word from the Fisher association analysis
+const POET_DETAIL = {
+  "钱谦益": [["白居易",0.7254,"君"],["陆游",0.7154,"恩"]],
+  "吴伟业": [["陆游",0.7749,"愁"],["白居易",0.7599,"梦"]],
+  "王士祯": [["白居易",0.7530,"春"],["陆游",0.7512,"花"]],
+  "朱彝尊": [["陆游",0.7684,"山"],["白居易",0.7510,"水"]],
+  "尤侗":   [["白居易",0.7650,"月"],["杜甫",0.7397,"酒"]],
+  "查慎行": [["白居易",0.7919,"君"],["苏轼",0.7724,"春"]],
+  "顾贞观": [["陆游",0.6828,"愁"],["白居易",0.6559,"秋"]],
+  "叶燮":   [["陆游",0.7331,"山"],["白居易",0.7261,"水"]],
+};
 
 // ===================== Color helper =====================
 function simColor(sim) {
@@ -512,21 +539,6 @@ function simColor(sim) {
     });
   });
 
-  // Draw section labels
-  const topLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  topLabel.setAttribute("x", cx);
-  topLabel.setAttribute("y", 30);
-  topLabel.setAttribute("class", "section-label");
-  topLabel.textContent = "清代诗人";
-  svg.appendChild(topLabel);
-
-  const botLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  botLabel.setAttribute("x", cx);
-  botLabel.setAttribute("y", 540);
-  botLabel.setAttribute("class", "section-label");
-  botLabel.textContent = "唐宋诗人";
-  svg.appendChild(botLabel);
-
   // Draw Tang/Song nodes (bottom, jade green)
   let nodeDelay = 0.3;
   Object.entries(tangPos).forEach(([name, pos]) => {
@@ -552,11 +564,13 @@ function simColor(sim) {
     nodeDelay += 0.06;
   });
 
-  // Draw Qing nodes (top, vermillion red)
+  // Draw Qing nodes (top, vermillion red) — with hover tooltips
+  let qingNodeDelay = nodeDelay;
   Object.entries(qingPos).forEach(([name, pos]) => {
     const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
     g.style.opacity = 0;
-    g.style.animation = `popIn 0.5s ease ${nodeDelay}s forwards`;
+    g.style.animation = `popIn 0.5s ease ${qingNodeDelay}s forwards`;
+    g.style.cursor = "pointer";
     const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     circle.setAttribute("cx", pos.x);
     circle.setAttribute("cy", pos.y);
@@ -572,8 +586,40 @@ function simColor(sim) {
     label.setAttribute("fill", "#fff");
     label.textContent = name;
     g.appendChild(label);
+
+    // Hover handlers for tooltip
+    const detail = POET_DETAIL[name];
+    g.addEventListener("mouseenter", (e) => {
+      const tip = document.getElementById("poetTooltip");
+      let html = `<h4>${name}</h4>`;
+      detail.forEach(([tang, sim, word]) => {
+        html += `<div class="match-row">
+          <span class="match-name">${tang}</span>
+          <span class="match-sim">${sim.toFixed(4)}</span>
+          <span class="match-word">共通词：「${word}」</span>
+        </div>`;
+      });
+      html += `<div class="tip-note">余弦相似度 · 越高越相似</div>`;
+      tip.innerHTML = html;
+      tip.style.display = "block";
+    });
+    g.addEventListener("mousemove", (e) => {
+      const tip = document.getElementById("poetTooltip");
+      const rect = tip.parentElement.getBoundingClientRect();
+      let x = e.clientX - rect.left + 14;
+      let y = e.clientY - rect.top + 14;
+      // Keep tooltip within bounds
+      if (x + tip.offsetWidth > rect.width) x = e.clientX - rect.left - tip.offsetWidth - 14;
+      if (y + tip.offsetHeight > rect.height) y = e.clientY - rect.top - tip.offsetHeight - 14;
+      tip.style.left = x + "px";
+      tip.style.top = y + "px";
+    });
+    g.addEventListener("mouseleave", () => {
+      document.getElementById("poetTooltip").style.display = "none";
+    });
+
     svg.appendChild(g);
-    nodeDelay += 0.06;
+    qingNodeDelay += 0.06;
   });
 })();
 
